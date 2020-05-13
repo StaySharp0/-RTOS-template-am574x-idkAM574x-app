@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project [
+  <!ENTITY % cgtver SYSTEM "../../../../../common/cgt_a15_ver.dtd">
+  <!ENTITY % xdcver SYSTEM "../../../../../common/xdc_ver.dtd">
+  <!ENTITY % common_components SYSTEM "../../../../../common/common_components.dtd">
+  <!ENTITY % platform_components SYSTEM "../../../../components_am57xx.dtd">
+%cgtver;
+%xdcver;
+%common_components;
+%platform_components;
+]>
+<projectSpec>
+    <project
+        title="Rtos template App am574x a15"
+        name="rtos_template_app_am574x_a15"
+        deviceFamily="ARM"
+        device="Cortex A.AM5728_RevA"
+        toolChain="GNU"
+        linkerCommandFile=""
+        compilerBuildOptions=" -mfloat-abi=hard -DidkAM574x -DSOC_AM574x -Dam5728 "
+        linkerBuildOptions=
+        " -L${TI_PDK_INSTALL_DIR}/packages/ti/board/lib/idkAM574x/a15/release/
+          -l:ti.board.aa15fg
+          -nostartfiles -static --gc-sections -lgcc -lc -lm -lrdimon
+          -L${xdc_find:gnu/targets/arm/libs/install-native/arm-none-eabi/lib/hard:${ProjName}}
+          --specs=nano.specs"
+        description="This is a template application with multiple peripheral drivers."
+        cgtVersion="&cgtver;"
+        outputFormat="ELF">
+        <property name="xdcToolsVersion" value="&xdcver;"/>
+        <property name="products" value="&common_components;;&platform_components;"/>
+        <property name="type" value="rtsc"/>
+        <property name="target" value="gnu.targets.arm.A15F"/>
+        <property name="platform" value="ti.platforms.evmAM572X"/>
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="app.c" openOnCreation="false" excludeFromBuild="false" action="copy" >
+        </file>
+        <file path="app.h" openOnCreation="false" excludeFromBuild="true" action="copy" >
+        </file>
+        <file path="main.c" openOnCreation="false" excludeFromBuild="false" action="copy" >
+        </file>
+        <file path="main.cfg" openOnCreation="false" excludeFromBuild="false" action="copy" >
+        </file>
+        <file path="app.cfg" openOnCreation="false" excludeFromBuild="true" action="copy" >
+        </file>
+        <file path="app.defs" openOnCreation="false" excludeFromBuild="false" action="copy" >
+        </file>
+        <file path="../GPIO_idkAM574x_board.c" openOnCreation="false" excludeFromBuild="false" action="copy" >
+        </file>
+        <file path="../GPIO_board.h" openOnCreation="false" excludeFromBuild="false" action="copy" >
+        </file>
+
+    </project>
+</projectSpec>
+
